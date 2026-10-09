@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArgonLearn — Frontier AI from Zero to Hero (ADK Multi-Agent Visualizer)</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- Top Production Header Bar -->
+  <header class="topbar">
+    <div class="brand-group">
+      <div class="brand-orb"></div>
+      <div>
+        <div class="brand-title">
+          ArgonLearn <span class="brand-badge">ADK-Python • Gemini 4 Argon</span>
+        </div>
+        <div class="brand-subtitle">Personalized ELI5-to-Hero Multi-Agent AI Visualizer</div>
+      </div>
+    </div>
+
+    <div class="router-pills" id="routerPills">
+      <span class="pill pill-flash" id="pillTriage">Triage: gemini-2.5-flash</span>
+      <span class="pill pill-pro" id="pillPedagogy">Pedagogy: gemini-2.5-pro</span>
+      <span class="pill pill-argon" id="pillVisualizer">Hero Mode: gemini-4-argon</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-demo" id="btnAutoDemo" title="Auto-play the 30-90s Gemini 4 Silent Demo Storyboard">
+        ▶ Auto-Play Silent Demo Reel
+      </button>
+      <button class="btn btn-secondary" id="btnProdProof">
+        ☁ Cloud Run &amp; OTel Trace Proof
+      </button>
+      <button class="btn btn-outline" id="btnEndingBanner">
+        ★ Ending Callout
+      </button>
+    </div>
+  </header>
+
+  <!-- Storyboard Progress Bar -->
+  <div class="storyboard-strip" id="storyboardStrip">
+    <div class="sb-step active" data-step="1">0:00–0:08 • 1. The Hook (Meta Muse Triage)</div>
+    <div class="sb-step" data-step="2">0:08–0:35 • 2. Interactive Toybox (80% → 20% Slider)</div>
+    <div class="sb-step" data-step="3">0:35–0:55 • 3. Hero Mode, 3D Manim &amp; Skill-Tree DAG</div>
+    <div class="sb-step" data-step="4">0:55–1:10 • 4. Cloud Run &amp; OpenTelemetry Proof</div>
+  </div>
+
+  <!-- Main Split-Screen Workspace -->
+  <main class="workspace">
+    <!-- Left Column: Prompt Hook, ELI5-to-Hero Pedagogy & Persistent DAG Skill Tree -->
+    <section class="left-column">
+      <!-- Prompt Input Card -->
+      <div class="card prompt-card">
+        <div class="card-header">
+          <span class="section-tag">INGESTION &amp; TRIAGE AGENT</span>
+          <span class="pii-badge" id="piiStatusBadge">🛡 Cloud DLP / Regex PII Scrubber Active</span>
+        </div>
+
+        <div class="input-row">
+          <input
+            id="promptInput"
+            type="text"
+            value="Meta just released Muse: Masked Generative Video Transformer."
+            placeholder="Drop an AI research headline, arXiv title, or breakthrough..."
+          />
+          <button class="btn btn-primary" id="btnAnalyze">Synthesize</button>
+        </div>
+
+        <div class="preset-chips">
+          <button class="chip active" data-prompt="Meta just released Muse: Masked Generative Video Transformer.">
+            Meta Muse (Discrete Parallel Diffusion)
+          </button>
+          <button class="chip" data-prompt="DeepSeek &amp; Switch Transformers: Sparse Mixture of Experts with Top-K Routing">
+            Sparse Mixture of Experts (MoE)
+          </button>
+          <button class="chip" data-prompt="Fast LLM Inference via Lossless Speculative Decoding and Rejection Sampling">
+            Speculative Decoding
+          </button>
+        </div>
+
+        <!-- Typing & Concept Detection HUD Banner -->
+        <div class="hud-concept-bar" id="hudConceptBar">
+          <span class="typing-dot" id="typingIndicator"></span>
+          <span class="hud-concept-text" id="hudConceptText">
+            Level: Novice | Concept: Discrete Parallel Diffusion
+          </span>
+          <button class="btn btn-hero" id="btnHeroMode">
+            ⚡ Deep Dive (Hero Mode)
+          </button>
+        </div>
+      </div>
+
+      <!-- Progressive Pedagogy Breakdown Card -->
+      <div class="card pedagogy-card">
+        <div class="card-header">
+          <span class="section-tag">PEDAGOGY COORDINATOR AGENT</span>
+          <div class="tier-tabs" id="tierTabs">
+            <button class="tier-tab" data-tier="ELI5">ELI5</button>
+            <button class="tier-tab active" data-tier="Novice">Novice</button>
+            <button class="tier-tab" data-tier="Practitioner">Practitioner</button>
+            <button class="tier-tab hero-tab" data-tier="Hero">Hero (Math)</button>
+          </div>
+        </div>
+
+        <div class="pedagogy-body">
+          <div class="eli5-callout" id="eli5Box">
+            <div class="callout-label">💡 ELI5 Conceptual Analogy</div>
+            <p id="eli5Text">
+              Imagine solving a 1,000-piece jigsaw puzzle with a team of friends. Old AI forced everyone to place pieces one by one from top-left to bottom-right. Meta Muse's Discrete Parallel Diffusion lets the whole team place the easiest 20% of pieces across the board at once, then uses those anchor pieces as clues to snap the remaining 80% into place in parallel rounds!
+            </p>
+          </div>
+
+          <div class="tier-explanation-box" id="tierExplanationBox">
+            <div class="callout-label" id="activeTierTitle">Novice Architectural Breakdown</div>
+            <p id="activeTierText">
+              Instead of generating pixels or words sequentially, Muse compresses video frames into a discrete grid of VQ-VAE tokens. Starting with 80%+ of tokens masked as [MASK], a bidirectional Transformer predicts all masked tokens simultaneously, locking in the highest-confidence predictions at each step.
+            </p>
+          </div>
+
+          <div class="math-formula-bar" id="mathFormulaBar">
+            <div class="formula-label">Zero-Hallucination Governing Objective:</div>
+            <code id="governingEquationCode">
+              L_mask = -E_{Y_M}[ Σ_{i ∈ M} log p_θ(y_i | Y_U) ],   r(t) = cos(πt / 2T),   s(u,v) = (u·v)/(||u||₂ ||v||₂)
+            </code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Persistent Learner Knowledge Graph (DAG) Card -->
+      <div class="card dag-card">
+        <div class="card-header">
+          <div>
+            <span class="section-tag">PERSISTENT FIRESTORE KNOWLEDGE GRAPH (DAG)</span>
+            <span class="sub-tag" id="dagStatsTag">5 Nodes • Acyclic Verified • Async Indexed</span>
+          </div>
+          <div class="skill-hud-toast" id="skillHudToast">
+            [+1 Mastered: Discrete Parallel Diffusion]
+          </div>
+        </div>
+
+        <div class="dag-canvas-container">
+          <svg id="dagSvg" viewBox="0 0 680 210" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Live Interactive Simulation Toybox & 3D Manim Vector Reel -->
+    <section class="right-column">
+      <!-- Interactive Toybox Widget Card -->
+      <div class="card sim-card">
+        <div class="card-header">
+          <div>
+            <span class="section-tag">INTERACTIVE VISUALIZER AGENT • SANDBOXED HTML5 TOYBOX</span>
+            <h3 class="card-title" id="simWidgetTitle">Discrete Parallel Diffusion — Interactive Token Grid</h3>
+          </div>
+          <span class="guardrail-badge" id="guardrailBadge">✔ Guardrail Policy Verified</span>
+        </div>
+
+        <div class="sim-controls">
+          <div class="slider-group primary-slider">
+            <div class="slider-label-row">
+              <label for="maskingSlider" class="slider-title">
+                Masking Ratio: <span class="highlight-val">80% → 20%</span>
+              </label>
+              <span class="slider-readout" id="maskingReadout">Current Masking: 80% (Step t = 2/16)</span>
+            </div>
+            <input
+              id="maskingSlider"
+              type="range"
+              min="15"
+              max="85"
+              value="80"
+              step="1"
+            />
+          </div>
+
+          <div class="sim-metrics-row">
+            <div class="metric-chip">
+              <span class="m-label">Resolved Tokens</span>
+              <span class="m-val" id="metricResolved">10 / 48 (20%)</span>
+            </div>
+            <div class="metric-chip">
+              <span class="m-label">Attention Sharpness</span>
+              <span class="m-val" id="metricEntropy">0.42 Cosine Peak</span>
+            </div>
+            <div class="metric-chip">
+              <span class="m-label">Parallel Speedup</span>
+              <span class="m-val" id="metricSpeedup">16.4× vs Autoregressive</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="tokenGridCanvas" width="660" height="245"></canvas>
+        </div>
+      </div>
+
+      <!-- 3D Manim Vector Animation & AST Script Card -->
+      <div class="card manim-card">
+        <div class="card-header">
+          <div>
+            <span class="section-tag">HERO MODE • MANIM 3D VECTOR ANIMATION ENGINE</span>
+            <h3 class="card-title">3D Cosine Similarity Latent Vector Clustering</h3>
+          </div>
+          <div class="manim-tabs">
+            <button class="m-tab active" id="tabManimVisual">3D Vector Reel</button>
+            <button class="m-tab" id="tabManimCode">Manim Python AST</button>
+            <button class="btn btn-hitl" id="btnHitlGate" title="Human-in-the-Loop Execution Gate">
+              🔒 HITL Render Gate
+            </button>
+          </div>
+        </div>
+
+        <div class="manim-stage" id="manimVisualPane">
+          <canvas id="manim3dCanvas" width="660" height="235"></canvas>
+          <div class="manim-overlay-hud">
+            <span id="manimStepLabel">Cosine Similarity Manifold: s(u, v) = (u · v) / (||u||₂ ||v||₂)</span>
+            <span class="cosine-meter" id="manimCosineMeter">Mean Cluster Alignment: 0.94</span>
+          </div>
+        </div>
+
+        <div class="manim-code-pane hidden" id="manimCodePane">
+          <pre><code id="manimSourceCode"></code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Prod & Architecture Proof Drawer (Cloud Run + OpenTelemetry Trace Waterfall + structlog JSON) -->
+  <section class="prod-proof-drawer hidden" id="prodProofDrawer">
+    <div class="drawer-header">
+      <div>
+        <span class="section-tag">0:55 – 1:10 • PRODUCTION &amp; ARCHITECTURE PROOF</span>
+        <h3>Google Cloud Run Deployment • OpenTelemetry Distributed Trace • structlog Audit</h3>
+      </div>
+      <button class="btn btn-outline" id="btnCloseProof">✕ Close</button>
+    </div>
+
+    <div class="proof-grid">
+      <!-- Cloud Run Revision & Infrastructure Panel -->
+      <div class="proof-panel">
+        <h4>☁ Google Cloud Run v2 &amp; IaC Status</h4>
+        <div class="kv-list" id="cloudRunKvList">
+          <div class="kv-item"><span>Service Name</span><strong>argon-learn (Cloud Run Gen2)</strong></div>
+          <div class="kv-item"><span>Active Revision</span><strong class="text-emerald">argon-learn-00042-x9k (100% Traffic)</strong></div>
+          <div class="kv-item"><span>Region / Autoscaling</span><strong>us-central1 (min=1, max=10, 2 vCPU / 2 GiB)</strong></div>
+          <div class="kv-item"><span>Firestore Native DB</span><strong id="proofFirestoreMode">learner_knowledge_nodes (DAG Active)</strong></div>
+          <div class="kv-item"><span>Secret Manager</span><strong>argon-learn-gemini-api-key (Mounted)</strong></div>
+          <div class="kv-item"><span>History Compaction</span><strong id="proofCompactionStats">Sliding Window (8 turns / 4096 tok)</strong></div>
+        </div>
+      </div>
+
+      <!-- OpenTelemetry Distributed Trace Waterfall -->
+      <div class="proof-panel">
+        <h4>🔭 OpenTelemetry Trace Waterfall (`opentelemetry-exporter-gcp-trace`)</h4>
+        <div class="trace-waterfall" id="otelTraceWaterfall"></div>
+      </div>
+
+      <!-- structlog Intent vs Outcome JSON Stream -->
+      <div class="proof-panel">
+        <h4>📋 structlog JSON (`agent_intent` vs. `tool_outcome`)</h4>
+        <pre class="audit-json-box" id="structlogAuditBox"></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Human-in-the-Loop (HITL) Confirmation Modal -->
+  <div class="modal-backdrop hidden" id="hitlModalBackdrop">
+    <div class="modal-card">
+      <div class="section-tag">HUMAN-IN-THE-LOOP (HITL) HIGH-STAKES EXECUTION HOOK</div>
+      <h3>Confirm Sandboxed Manim Execution &amp; Shared Repo Publish</h3>
+      <p id="hitlModalPrompt">
+        The agent `InteractiveVisualizerAgent` (`gemini-4-argon`) is requesting permission to execute
+        `CosineSimilarityClusteringScene` and publish the compiled artifact to the team repository.
+      </p>
+      <div class="hitl-checks">
+        <div>✔ Python AST verified (`ast.parse` passed, zero forbidden imports)</div>
+        <div>✔ HTML5/JS `SimulationSafetyPolicyPlugin` passed</div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="btnCancelHitl">Cancel</button>
+        <button class="btn btn-primary" id="btnApproveHitl">✓ Approve &amp; Execute (`human_approved=True`)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cinema Ending Callout Overlay (Gemini 4 Challenge Finale) -->
+  <div class="ending-callout-overlay hidden" id="endingCalloutOverlay">
+    <div class="ending-content">
+      <div class="ending-orb"></div>
+      <h1>ArgonLearn — Frontier AI from Zero to Hero.</h1>
+      <p>Built with Google Agent Development Kit (ADK-Python) • Gemini 4 Argon • Cloud Run • Firestore DAG</p>
+      <button class="btn btn-outline" id="btnDismissEnding">Return to Workspace</button>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
